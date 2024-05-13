@@ -67,7 +67,9 @@ class JournalListViewController: UIViewController, UITableViewDataSource, UITabl
     @objc private func addJournal() {
         let addJournalViewController = AddJournalViewController()
         let navController = UINavigationController(rootViewController: addJournalViewController)
-        present(navController, animated: true)
+        present(navController, animated: true) {
+            
+        }
     }
 
 
