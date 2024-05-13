@@ -7,7 +7,7 @@
 
 import UIKit
 
-class JournalListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class JournalListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AddJournalControllerDelegate {
    
     var tableView: UITableView = {
        let tableView = UITableView()
@@ -70,6 +70,11 @@ class JournalListViewController: UIViewController, UITableViewDataSource, UITabl
         present(navController, animated: true) {
             
         }
+    }
+    
+    public func saveJournalEntry(_ journalEntry: JournalEntry) {
+        print("Text\(journalEntry.entryTitle)")
+        sampleJournalEntryData.journalEntries.append(journalEntry)
     }
 
 
