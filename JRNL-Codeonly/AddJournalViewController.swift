@@ -15,8 +15,17 @@ class AddJournalViewController: UIViewController {
         navigationItem.title = "New Entry"
         view.backgroundColor = .white
         // Do any additional setup after loading the view.
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cencel))
+    }
+    @objc func save() {
+        
     }
     
+    @objc func cencel(){
+        dismiss(animated: true)
+    }
 
     /*
     // MARK: - Navigation
