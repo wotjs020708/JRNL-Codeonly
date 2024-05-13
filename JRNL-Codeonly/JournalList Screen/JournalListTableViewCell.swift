@@ -17,13 +17,15 @@ class JournalListTableViewCell: UITableViewCell {
     }()
     
     private lazy var dateLabel: UILabel = {
-       let deteLabel = UILabel()
-        deteLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        return deteLabel
+       let dateLable = UILabel()
+        dateLable.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        dateLable.text = "Date"
+        return dateLable
     }()
     
     private lazy var titleLabel: UILabel = {
        let titleLabel = UILabel()
+        titleLabel.text = "Title"
         titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         return titleLabel
     }()
@@ -42,7 +44,19 @@ class JournalListTableViewCell: UITableViewCell {
         let marginGuide = layoutMarginsGuide
         
         NSLayoutConstraint.activate([
-            thumbnilView.topAnchor.constraint(equalTo: safeArea.topAnchor)
+            thumbnilView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            thumbnilView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
+            thumbnilView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            thumbnilView.widthAnchor.constraint(equalToConstant: 90),
+            
+            dateLabel.topAnchor.constraint(equalTo: marginGuide.topAnchor),
+            dateLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor),
+            dateLabel.leadingAnchor.constraint(equalTo: thumbnilView.trailingAnchor, constant: 8),
+            
+            titleLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 8),
+            titleLabel.leadingAnchor.constraint(equalTo: thumbnilView.trailingAnchor, constant: 8),
+            titleLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor)
+            
             
         ])
     }
