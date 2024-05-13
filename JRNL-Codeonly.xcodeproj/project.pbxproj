@@ -9,19 +9,21 @@
 /* Begin PBXBuildFile section */
 		4B7A40632BF19241009EC186 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A40622BF19241009EC186 /* AppDelegate.swift */; };
 		4B7A40652BF19241009EC186 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A40642BF19241009EC186 /* SceneDelegate.swift */; };
-		4B7A40672BF19241009EC186 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A40662BF19241009EC186 /* ViewController.swift */; };
+		4B7A40672BF19241009EC186 /* JournalListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A40662BF19241009EC186 /* JournalListViewController.swift */; };
 		4B7A406C2BF19242009EC186 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B7A406B2BF19242009EC186 /* Assets.xcassets */; };
 		4B7A406F2BF19242009EC186 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 4B7A406E2BF19242009EC186 /* Base */; };
+		4B7A40772BF1967C009EC186 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A40762BF1967C009EC186 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4B7A405F2BF19241009EC186 /* JRNL-Codeonly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JRNL-Codeonly.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B7A40622BF19241009EC186 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B7A40642BF19241009EC186 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4B7A40662BF19241009EC186 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4B7A40662BF19241009EC186 /* JournalListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalListViewController.swift; sourceTree = "<group>"; };
 		4B7A406B2BF19242009EC186 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B7A406E2BF19242009EC186 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B7A40702BF19242009EC186 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B7A40762BF1967C009EC186 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,10 +58,11 @@
 			children = (
 				4B7A40622BF19241009EC186 /* AppDelegate.swift */,
 				4B7A40642BF19241009EC186 /* SceneDelegate.swift */,
-				4B7A40662BF19241009EC186 /* ViewController.swift */,
+				4B7A40662BF19241009EC186 /* JournalListViewController.swift */,
 				4B7A406B2BF19242009EC186 /* Assets.xcassets */,
 				4B7A406D2BF19242009EC186 /* LaunchScreen.storyboard */,
 				4B7A40702BF19242009EC186 /* Info.plist */,
+				4B7A40762BF1967C009EC186 /* MapViewController.swift */,
 			);
 			path = "JRNL-Codeonly";
 			sourceTree = "<group>";
@@ -134,9 +137,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B7A40672BF19241009EC186 /* ViewController.swift in Sources */,
+				4B7A40672BF19241009EC186 /* JournalListViewController.swift in Sources */,
 				4B7A40632BF19241009EC186 /* AppDelegate.swift in Sources */,
 				4B7A40652BF19241009EC186 /* SceneDelegate.swift in Sources */,
+				4B7A40772BF1967C009EC186 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
