@@ -16,6 +16,7 @@
 		4B7A40792BF1A7C5009EC186 /* AddJournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A40782BF1A7C5009EC186 /* AddJournalViewController.swift */; };
 		4B7A407B2BF1B401009EC186 /* JournalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A407A2BF1B401009EC186 /* JournalDetailViewController.swift */; };
 		4B7A407D2BF1B56E009EC186 /* JournalListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A407C2BF1B56E009EC186 /* JournalListTableViewCell.swift */; };
+		4B7A40802BF1E57A009EC186 /* JounrnalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A407F2BF1E579009EC186 /* JounrnalEntry.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		4B7A40782BF1A7C5009EC186 /* AddJournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJournalViewController.swift; sourceTree = "<group>"; };
 		4B7A407A2BF1B401009EC186 /* JournalDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalDetailViewController.swift; sourceTree = "<group>"; };
 		4B7A407C2BF1B56E009EC186 /* JournalListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalListTableViewCell.swift; sourceTree = "<group>"; };
+		4B7A407F2BF1E579009EC186 /* JounrnalEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JounrnalEntry.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,15 +64,16 @@
 		4B7A40612BF19241009EC186 /* JRNL-Codeonly */ = {
 			isa = PBXGroup;
 			children = (
+				4B7A407F2BF1E579009EC186 /* JounrnalEntry.swift */,
 				4B7A40622BF19241009EC186 /* AppDelegate.swift */,
 				4B7A40642BF19241009EC186 /* SceneDelegate.swift */,
 				4B7A407E2BF1B586009EC186 /* JournalList Screen */,
 				4B7A407A2BF1B401009EC186 /* JournalDetailViewController.swift */,
 				4B7A40782BF1A7C5009EC186 /* AddJournalViewController.swift */,
+				4B7A40762BF1967C009EC186 /* MapViewController.swift */,
 				4B7A406B2BF19242009EC186 /* Assets.xcassets */,
 				4B7A406D2BF19242009EC186 /* LaunchScreen.storyboard */,
 				4B7A40702BF19242009EC186 /* Info.plist */,
-				4B7A40762BF1967C009EC186 /* MapViewController.swift */,
 			);
 			path = "JRNL-Codeonly";
 			sourceTree = "<group>";
@@ -155,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B7A40672BF19241009EC186 /* JournalListViewController.swift in Sources */,
+				4B7A40802BF1E57A009EC186 /* JounrnalEntry.swift in Sources */,
 				4B7A407B2BF1B401009EC186 /* JournalDetailViewController.swift in Sources */,
 				4B7A407D2BF1B56E009EC186 /* JournalListTableViewCell.swift in Sources */,
 				4B7A40632BF19241009EC186 /* AppDelegate.swift in Sources */,

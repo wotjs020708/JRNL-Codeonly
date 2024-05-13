@@ -40,8 +40,8 @@ class JournalListTableViewCell: UITableViewCell {
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        let safeArea = safeAreaLayoutGuide
-        let marginGuide = layoutMarginsGuide
+        let safeArea = self.safeAreaLayoutGuide
+        let marginGuide = self.layoutMarginsGuide
         
         NSLayoutConstraint.activate([
             thumbnilView.topAnchor.constraint(equalTo: safeArea.topAnchor),
@@ -50,12 +50,12 @@ class JournalListTableViewCell: UITableViewCell {
             thumbnilView.widthAnchor.constraint(equalToConstant: 90),
             
             dateLabel.topAnchor.constraint(equalTo: marginGuide.topAnchor),
-            dateLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor),
             dateLabel.leadingAnchor.constraint(equalTo: thumbnilView.trailingAnchor, constant: 8),
+            dateLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor, constant: -8),
             
             titleLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 8),
             titleLabel.leadingAnchor.constraint(equalTo: thumbnilView.trailingAnchor, constant: 8),
-            titleLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor)
+            titleLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor, constant: -8)
             
             
         ])
@@ -63,6 +63,13 @@ class JournalListTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - configureCell
+    func configureCell(journalEntry: JournalEntry) {
+        thumbnilView.image = journalEntry.photo
+        dateLabel.text = journalEntry.date.formatted(.dateTime.year().month().day())
+        titleLabel.text = journalEntry.entryTitle
     }
 
 }
