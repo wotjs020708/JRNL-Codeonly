@@ -10,6 +10,53 @@ import UIKit
 class JournalDetailViewController: UITableViewController {
     let journalEntry: JournalEntry?
   
+    private lazy var datelabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        label.textAlignment = .right
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        label.textAlignment = .right
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var bodyLabel: UITextView = {
+        let textView = UITextView()
+        textView.isEditable = false
+        textView.isSelectable = false
+        textView.backgroundColor = .systemBackground
+        textView.textColor = .label
+        textView.font = UIFont.systemFont(ofSize: 14)
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        return textView
+  
+    }()
+    
+    private lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "face.smailing")
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+        
+        
+    }()
+    
+    private lazy var mapView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "map")
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+        
+    }()
+    
     init(journalEntry: JournalEntry) {
         self.journalEntry = journalEntry
         super.init(nibName: nil, bundle: nil)
@@ -37,6 +84,7 @@ class JournalDetailViewController: UITableViewController {
         
         
     }
+    
     
     
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
