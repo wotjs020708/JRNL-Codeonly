@@ -67,14 +67,16 @@ class JournalListViewController: UIViewController, UITableViewDataSource, UITabl
     @objc private func addJournal() {
         let addJournalViewController = AddJournalViewController()
         let navController = UINavigationController(rootViewController: addJournalViewController)
+        addJournalViewController.delegate = self
         present(navController, animated: true) {
             
         }
     }
     
     public func saveJournalEntry(_ journalEntry: JournalEntry) {
-        print("Text\(journalEntry.entryTitle)")
+        print("TEST \(journalEntry.entryTitle)")
         sampleJournalEntryData.journalEntries.append(journalEntry)
+        tableView.reloadData()
     }
 
 
