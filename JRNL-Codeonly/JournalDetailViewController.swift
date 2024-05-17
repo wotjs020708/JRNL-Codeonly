@@ -8,35 +8,6 @@
 import UIKit
 import MapKit
 
-class CustomtableViewCell: UITableViewCell{
-    var stackView: UIStackView!
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupUI()
-    }
-    
-    required init?(coder:NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setupUI() {
-        stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.backgroundColor = .systemCyan
-        stackView.spacing = 8
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(stackView)
-        
-        NSLayoutConstraint.activate([
-            stackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            stackView.widthAnchor.constraint(equalToConstant: 252),
-            stackView.heightAnchor.constraint(equalToConstant: 44)
-        ])
-    }
-}
-
 
 class JournalDetailViewController: UITableViewController {
     let journalEntry: JournalEntry
@@ -48,6 +19,14 @@ class JournalDetailViewController: UITableViewController {
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    private lazy var ratingView: RatingView = {
+        let ratingView = RatingView(frame: CGRect(x: 0, y: 0, width: 252, height: 44))
+        ratingView.distribution = .equalSpacing
+        ratingView.isUserInteractionEnabled = false
+        ratingView.translatesAutoresizingMaskIntoConstraints = false
+        return ratingView
     }()
     
     private lazy var titleLabel: UILabel = {
@@ -119,7 +98,6 @@ class JournalDetailViewController: UITableViewController {
     override func viewDidLoad() {
             super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.register(CustomtableViewCell.self, forCellReuseIdentifier: "customCell")
         navigationItem.title = "Detail"
     }
     
@@ -153,7 +131,14 @@ class JournalDetailViewController: UITableViewController {
              ])
              return cell
          case 1:
-             let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! CustomtableViewCell
+             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+             ratingView.rating = journalEntry.rating
+             cell.contentView.addSubview(ratingView)
+             
+             ratingView.centerXAnchor.constraint(equalTo: cell.contentView.centerXAnchor).isActive = true
+             ratingView.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor).isActive = true
+             ratingView.widthAnchor.constraint(equalToConstant: 252).isActive = true
+             ratingView.heightAnchor.constraint(equalToConstant: 44).isActive = true
              return cell
          case 2:
              let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
