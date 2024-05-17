@@ -6,24 +6,64 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
-class MapViewController: UIViewController {
-
+class MapViewController: UIViewController, CLLocationManagerDelegate {
+    
+    let locationManager = CLLocationManager()
+    
+    var sampleJournalEntryData = SampleJournalEntryData()
+    
+    private lazy var mapView: MKMapView = {
+        let mapView = MKMapView()
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        return mapView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        sampleJournalEntryData.createSampleJounrnalEntryData()
+        mapView.addAnnotations(sampleJournalEntryData.journalEntries)
+        
         // Do any additional setup after loading the view.
+        view.backgroundColor = .white
+        navigationItem.title = "Map"
+        view.addSubview(mapView)
+        
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        self.navigationItem.title = "Loding..."
+        locationManager.requestLocation()
+        
+        
+        let safeArea = view.safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            mapView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            mapView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
+            mapView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            mapView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
+        ])
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - CLLoactionMangerDdelgate
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let myCurrentLocation = locations.first {
+            let lat = myCurrentLocation.coordinate.latitude
+            let long = myCurrentLocation.coordinate.longitude
+            self.navigationItem.title = "Map"
+            mapView.region = setInitialRegion(lat: lat, long: long)
+        }
     }
-    */
-
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
+        print("Failed to find user's location: \(error.localizedDescription)")
+    }
+    
+    // MARK: - Methods
+    
+    func setInitialRegion(lat: CLLocationDegrees, long: CLLocationDegrees) -> MKCoordinateRegion {
+        MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: lat, longitude: long), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+    }
 }
