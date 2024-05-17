@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 class CustomtableViewCell: UITableViewCell{
     var stackView: UIStackView!
@@ -38,7 +39,7 @@ class CustomtableViewCell: UITableViewCell{
 
 
 class JournalDetailViewController: UITableViewController {
-    let journalEntry: JournalEntry?
+    let journalEntry: JournalEntry
   
     private lazy var datelabel: UILabel = {
         let label = UILabel()
@@ -84,6 +85,25 @@ class JournalDetailViewController: UITableViewController {
         imageView.image = UIImage(systemName: "map")
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        guard let latitude = journalEntry.latitude,
+              let longitude = journalEntry.longitude else {
+            return imageView
+        }
+        let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let region = MKCoordinateRegion(center: location, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            
+        let options = MKMapSnapshotter.Options()
+        options.region = region
+        options.size = CGSize(width: 300, height: 300)
+        
+        let shotter = MKMapSnapshotter(options: options)
+        shotter.start { result, error in
+            guard let snapshot = result else {
+                print("Snapshot erro \(error?.localizedDescription ?? "")")
+                return
+            }
+            imageView.image = snapshot.image
+        }
         return imageView
         
     }()
@@ -124,7 +144,7 @@ class JournalDetailViewController: UITableViewController {
          case 0:
              let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
              cell.contentView.addSubview(datelabel)
-             datelabel.text = journalEntry?.date.formatted(.dateTime.year().month().day())
+             datelabel.text = journalEntry.date.formatted(.dateTime.year().month().day())
              let marginGuide = cell.contentView.layoutMarginsGuide
              NSLayoutConstraint.activate([
                 datelabel.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor),
@@ -138,7 +158,7 @@ class JournalDetailViewController: UITableViewController {
          case 2:
              let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
              cell.contentView.addSubview(titleLabel)
-             titleLabel.text = journalEntry?.entryTitle
+             titleLabel.text = journalEntry.entryTitle
              let marginGuide = cell.contentView.layoutMarginsGuide
              NSLayoutConstraint.activate([
                 titleLabel.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor),
@@ -150,7 +170,7 @@ class JournalDetailViewController: UITableViewController {
              
              let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
              cell.contentView.addSubview(bodyTextView)
-             bodyTextView.text = journalEntry?.entrybody
+             bodyTextView.text = journalEntry.entrybody
              let marginGuide = cell.contentView.layoutMarginsGuide
              NSLayoutConstraint.activate([
                 bodyTextView.topAnchor.constraint(equalTo: marginGuide.topAnchor),
@@ -163,7 +183,7 @@ class JournalDetailViewController: UITableViewController {
              
              let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
              cell.contentView.addSubview(imageView)
-             imageView.image = journalEntry?.photo
+             imageView.image = journalEntry.photo
              NSLayoutConstraint.activate([
                 imageView.centerXAnchor.constraint(equalTo: cell.contentView.centerXAnchor),
                 imageView.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor),
@@ -202,49 +222,5 @@ class JournalDetailViewController: UITableViewController {
         }
     }
     
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+  
 }
