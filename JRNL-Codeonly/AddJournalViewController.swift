@@ -142,11 +142,14 @@ class AddJournalViewController: UIViewController, CLLocationManagerDelegate, UIT
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
-        
-        
-        
     }
-    // MARK: - MEthods
+    
+    // MARK: - UITextViewDelegate
+    func textViewDidChange(_ textView: UITextView) {
+        updateSaveButtonState()
+    }
+    
+    // MARK: - Methods
     func updateSaveButtonState() {
         if locationSwitchIsOn{
             guard let title = titleTextField.text, !title.isEmpty,
@@ -165,6 +168,7 @@ class AddJournalViewController: UIViewController, CLLocationManagerDelegate, UIT
             }
             saveButton.isEnabled = true
         
+    
         }
     }
     
@@ -181,7 +185,7 @@ class AddJournalViewController: UIViewController, CLLocationManagerDelegate, UIT
         let lat = currentLocation?.coordinate.latitude
         let long = currentLocation?.coordinate.longitude
         
-        let journalEntry = JournalEntry(rating: 3, title: title, body: body, photo: UIImage(systemName: "face.smiling"), latitude: lat, longitude: long)!
+        let journalEntry = JournalEntry(rating: 3, title: title, body: body, photo: UIImage(systemName: "face.smiling")?.withRenderingMode(.alwaysOriginal), latitude: lat, longitude: long)!
         delegate?.saveJournalEntry(journalEntry)
         dismiss(animated: true)
         
@@ -216,7 +220,7 @@ class AddJournalViewController: UIViewController, CLLocationManagerDelegate, UIT
             if let label: UILabel = toggleView.viewWithTag(LABEL_VIEW_TAG) as? UILabel{
                 label.text = "Done"
             }
-            // TODO: updateButtonState
+            updateSaveButtonState()
         }
     }
     
