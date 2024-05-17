@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4B6EED312BF7229300D8DF78 /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6EED302BF7229300D8DF78 /* SharedData.swift */; };
+		4B6EED332BF73DB800D8DF78 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6EED322BF73DB800D8DF78 /* RatingView.swift */; };
 		4B7A40632BF19241009EC186 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A40622BF19241009EC186 /* AppDelegate.swift */; };
 		4B7A40652BF19241009EC186 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A40642BF19241009EC186 /* SceneDelegate.swift */; };
 		4B7A40672BF19241009EC186 /* JournalListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A40662BF19241009EC186 /* JournalListViewController.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		4B6EED302BF7229300D8DF78 /* SharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
+		4B6EED322BF73DB800D8DF78 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		4B7A405F2BF19241009EC186 /* JRNL-Codeonly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JRNL-Codeonly.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B7A40622BF19241009EC186 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B7A40642BF19241009EC186 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +49,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B6EED342BF73F2300D8DF78 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4B7A407F2BF1E579009EC186 /* JounrnalEntry.swift */,
+				4B6EED302BF7229300D8DF78 /* SharedData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		4B7A40562BF19241009EC186 = {
 			isa = PBXGroup;
 			children = (
@@ -66,14 +77,14 @@
 		4B7A40612BF19241009EC186 /* JRNL-Codeonly */ = {
 			isa = PBXGroup;
 			children = (
-				4B7A407F2BF1E579009EC186 /* JounrnalEntry.swift */,
+				4B6EED342BF73F2300D8DF78 /* Model */,
+				4B7A407E2BF1B586009EC186 /* Views */,
 				4B7A40622BF19241009EC186 /* AppDelegate.swift */,
 				4B7A40642BF19241009EC186 /* SceneDelegate.swift */,
-				4B7A407E2BF1B586009EC186 /* JournalList Screen */,
+				4B7A40662BF19241009EC186 /* JournalListViewController.swift */,
 				4B7A407A2BF1B401009EC186 /* JournalDetailViewController.swift */,
 				4B7A40782BF1A7C5009EC186 /* AddJournalViewController.swift */,
 				4B7A40762BF1967C009EC186 /* MapViewController.swift */,
-				4B6EED302BF7229300D8DF78 /* SharedData.swift */,
 				4B7A406B2BF19242009EC186 /* Assets.xcassets */,
 				4B7A406D2BF19242009EC186 /* LaunchScreen.storyboard */,
 				4B7A40702BF19242009EC186 /* Info.plist */,
@@ -81,13 +92,13 @@
 			path = "JRNL-Codeonly";
 			sourceTree = "<group>";
 		};
-		4B7A407E2BF1B586009EC186 /* JournalList Screen */ = {
+		4B7A407E2BF1B586009EC186 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4B7A40662BF19241009EC186 /* JournalListViewController.swift */,
 				4B7A407C2BF1B56E009EC186 /* JournalListTableViewCell.swift */,
+				4B6EED322BF73DB800D8DF78 /* RatingView.swift */,
 			);
-			path = "JournalList Screen";
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,6 +174,7 @@
 				4B6EED312BF7229300D8DF78 /* SharedData.swift in Sources */,
 				4B7A40672BF19241009EC186 /* JournalListViewController.swift in Sources */,
 				4B7A40802BF1E57A009EC186 /* JounrnalEntry.swift in Sources */,
+				4B6EED332BF73DB800D8DF78 /* RatingView.swift in Sources */,
 				4B7A407B2BF1B401009EC186 /* JournalDetailViewController.swift in Sources */,
 				4B7A407D2BF1B56E009EC186 /* JournalListTableViewCell.swift in Sources */,
 				4B7A40632BF19241009EC186 /* AppDelegate.swift in Sources */,
