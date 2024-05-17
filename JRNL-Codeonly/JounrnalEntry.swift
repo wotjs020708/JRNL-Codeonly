@@ -8,16 +8,26 @@
 import UIKit
 import MapKit
 
-class JournalEntry: NSObject, MKAnnotation {
+class JournalEntry: NSObject, MKAnnotation, Codable {
     
     // MARK: - Properties
     let date: Date
     let rating: Int
     let entryTitle: String
     let entrybody: String
-    let photo: UIImage?
+    var photo: UIImage? {
+        get {
+            guard let data = photoData else { return nil }
+            return UIImage(data: data)
+        }
+        set {
+            photoData = newValue?.jpegData(compressionQuality: 1.0)
+        }
+    }
     let latitude: Double?
     let longitude: Double?
+    
+    private var photoData: Data?
     
     // MARK: - Initializetion
     init?(rating: Int, title: String, body: String, photo: UIImage? = nil, latitude: Double? = nil, longitude: Double? = nil) {
@@ -26,7 +36,7 @@ class JournalEntry: NSObject, MKAnnotation {
         self.rating = rating
         self.entryTitle = title
         self.entrybody = body
-        self.photo = photo
+        self.photoData = photo?.jpegData(compressionQuality: 1.0)
         self.latitude = latitude
         self.longitude = longitude
     }
@@ -45,6 +55,34 @@ class JournalEntry: NSObject, MKAnnotation {
     
     var subtitle: String? {
         entryTitle
+    }
+    
+    enum Codingkeys: String, CodingKey {
+        case date, rating, entryTitle, entryBody, photoData, latitude, longitude
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Codingkeys.self)
+        date = try container.decode(Date.self, forKey:  .date)
+        rating = try container.decode(Int.self, forKey: .rating)
+        entryTitle = try container.decode(String.self, forKey: .entryTitle)
+        entrybody = try container.decode(String.self, forKey: .entryBody)
+        photoData = try container.decode(Data.self, forKey: .photoData)
+        latitude = try container.decode(Double.self, forKey: .latitude)
+        longitude = try container.decode(Double.self, forKey: .longitude)
+    }
+    
+    func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: Codingkeys.self)
+        try container.encode(date, forKey: .date)
+        try container.encode(rating, forKey: .rating)
+        try container.encode(entryTitle, forKey: .entryTitle)
+        try container.encode(entrybody, forKey: .entryBody)
+        try container.encode(photoData, forKey: .photoData)
+        try container.encode(latitude, forKey: .latitude)
+        try container.encode(longitude, forKey: .longitude)
+        
+        
     }
     
 }
