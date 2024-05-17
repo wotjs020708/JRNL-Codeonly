@@ -13,8 +13,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     let locationManager = CLLocationManager()
     
-    var sampleJournalEntryData = SampleJournalEntryData()
-    
     private lazy var mapView: MKMapView = {
         let mapView = MKMapView()
         mapView.delegate = self
@@ -24,8 +22,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        sampleJournalEntryData.createSampleJounrnalEntryData()
-        mapView.addAnnotations(sampleJournalEntryData.journalEntries)
+    
         
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
@@ -34,8 +31,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         self.navigationItem.title = "Loding..."
-        locationManager.requestLocation()
         
         
         let safeArea = view.safeAreaLayoutGuide
@@ -47,6 +44,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         ])
     }
     
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        locationManager.requestLocation()
+    }
+    
+    
     // MARK: - CLLoactionMangerDdelgate
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -55,6 +58,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             let long = myCurrentLocation.coordinate.longitude
             self.navigationItem.title = "Map"
             mapView.region = setInitialRegion(lat: lat, long: long)
+            mapView.addAnnotations(SharedData.shared.getAllJournalEntries())
         }
     }
     
